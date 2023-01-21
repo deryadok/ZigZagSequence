@@ -16,5 +16,5 @@ The first line contains *t* the number of test cases. The first line of each tes
 
 *1 ≤ a<sub>i</sub> ≤ 10<sup>9</sup>*
 
-##Output Format
+## Output Format
 For each test cases, print the elements of the transformed zig zag sequence in a single line.
