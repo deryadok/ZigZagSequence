@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using ZigZagSequence.Helpers;
 using ZigZagSequence.Models;
 
@@ -8,12 +9,10 @@ List<string> output = new List<string>();
 
 for (int i = 0; i < model.CaseNumber; i++)
 {
-    foreach (TestCase item in model.TestCases)
-    {
-        result = Helper.Calculate(item);
-    }
-
-    output.AddRange(Helper.ConvertList(result));
+    result = Helper.Calculate(model.TestCases[i]);
+    FileHelper.WriteTestOutput(Helper.ConvertList(result));
 }
 
-FileHelper.WriteTestOutput(output);
+Debug.WriteLine(result.Count);
+
+Console.ReadLine();

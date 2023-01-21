@@ -15,40 +15,38 @@ namespace ZigZagSequence.Helpers
             string path = $@"{_solutionPath}\TestCases\TestCase2.txt";
             TestCaseModel testCaseModel = new TestCaseModel();
 
-            using (StreamReader reader = new StreamReader(path, Encoding.UTF8))
-            {
-                int caseNumber = 0;
-                if (int.TryParse(reader.ReadLine(), out caseNumber))
-                {
-                    testCaseModel.CaseNumber = caseNumber;
+            StreamReader reader = new StreamReader(path, Encoding.UTF8);
+            int caseNumber = 0;
 
-                    while (!reader.EndOfStream)
+            if (int.TryParse(reader.ReadLine(), out caseNumber))
+            {
+                testCaseModel.CaseNumber = caseNumber;
+
+                while (reader.Peek() > 0)
+                {
+                    testCaseModel.TestCases.Add(new TestCase()
                     {
-                        testCaseModel.TestCases.Add(new TestCase()
-                        {
-                            LenghtOfArray = reader.ReadLine(),
-                            CaseArray = reader.ReadLine()
-                        });
-                    }
+                        LenghtOfArray = reader.ReadLine(),
+                        CaseArray = reader.ReadLine()
+                    });
                 }
             }
+            reader.Close();
             return testCaseModel;
         }
 
-        public static void WriteTestOutput(List<string> outputs)
+        public static void WriteTestOutput(string output)
         {
             string path = $@"{_solutionPath}\Output\TestOutput.txt";
-            using (StreamWriter writer = File.CreateText(path))
-            {
-                foreach (string item in outputs)
-                {
-                    if (item is not @"/n")
-                        writer.Write(item + " ");
-                    else
-                        writer.WriteLine();
-                }
 
-            }
+            StreamWriter writer = File.OpenWrite(path);
+
+            writer.WriteLine(output);
+            Console.WriteLine(output);
+
+            writer.Flush();
+            writer.Close();
+
         }
     }
 }

@@ -21,10 +21,11 @@ namespace ZigZagSequence.Helpers
 
             caseArray.Sort();
             increase.AddRange(caseArray.Take(k - 1));
-            decrease.AddRange(caseArray.TakeLast(k));
 
+            decrease.AddRange(caseArray.TakeLast(k));
             decrease.Sort();
             decrease.Reverse();
+
             caseArray.Clear();
 
             if (increase.First() < decrease.First())
@@ -53,16 +54,14 @@ namespace ZigZagSequence.Helpers
             return value;
         }
 
-        public static List<string> ConvertList(List<int> list){
-            List<string> result = new List<string>();
+        public static string ConvertList(List<int> list){
+            string result = string.Empty;
 
             foreach (int item in list)
             {
-                result.Add(item.ToString());
+                result += item.ToString() + " ";
             }
-
-            result.Add(@"/n");
-
+            result = result.TrimEnd(' ');
             return result;
         }
     }
