@@ -28,16 +28,9 @@ namespace ZigZagSequence.Helpers
 
             caseArray.Clear();
 
-            if (increase.First() < decrease.First())
-            {
-                caseArray.AddRange(increase);
-                caseArray.AddRange(decrease);
-            }
-            else
-            {
-                caseArray.AddRange(decrease);
-                caseArray.AddRange(increase);
-            }
+            caseArray.AddRange(increase);
+            caseArray.AddRange(decrease);
+
 
             return caseArray;
         }
@@ -54,7 +47,8 @@ namespace ZigZagSequence.Helpers
             return value;
         }
 
-        public static string ConvertList(List<int> list){
+        public static string ConvertList(List<int> list)
+        {
             string result = string.Empty;
 
             foreach (int item in list)
