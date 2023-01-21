@@ -39,14 +39,9 @@ namespace ZigZagSequence.Helpers
         {
             string path = $@"{_solutionPath}\Output\TestOutput.txt";
 
-            StreamWriter writer = File.OpenWrite(path);
-
-            writer.WriteLine(output);
+            File.AppendAllText(path, output, Encoding.UTF8);
+            File.AppendAllText(path, "\r\n", Encoding.UTF8);
             Console.WriteLine(output);
-
-            writer.Flush();
-            writer.Close();
-
         }
     }
 }

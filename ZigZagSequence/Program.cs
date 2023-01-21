@@ -12,7 +12,3 @@ for (int i = 0; i < model.CaseNumber; i++)
     result = Helper.Calculate(model.TestCases[i]);
     FileHelper.WriteTestOutput(Helper.ConvertList(result));
 }
-
-Debug.WriteLine(result.Count);
-
-Console.ReadLine();
